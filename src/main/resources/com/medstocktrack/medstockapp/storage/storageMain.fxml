@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="960.0" styleClass="main-bg" stylesheets="@../../styles/mainStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medstocktrack.medstockapp.controller.storage.StorageMainController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="header" stylesheets="@../../styles/mainStyles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="MedStockTrack" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="42.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="580.0" prefWidth="250.0" styleClass="menu" stylesheets="@../../styles/mainStyles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="250.0" styleClass="menu-title" stylesheets="@../../styles/mainStyles.css" text="Меню" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="viewButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewStorage" prefHeight="65.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@../../styles/buttons.css" text="Перегляд стану складу" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="addButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addStorage" prefHeight="65.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@../../styles/buttons.css" text="Реєстрація завезення ліків" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="removeButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeStorage" prefHeight="65.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@../../styles/buttons.css" text="Реєстрація вивезення ліків" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="destroyButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#destroyStorage" prefHeight="65.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@../../styles/buttons.css" text="Реєстрація списання ліків" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets top="-2.0" />
+         </padding>
+      </VBox>
+   </left>
+   <bottom>
+      <HBox prefHeight="65.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="65.0" prefWidth="250.0" styleClass="exit-button" stylesheets="@../../styles/buttons.css" text="Назад" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="19.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="98.0" prefWidth="651.0" text="Ви знаходитесь у частині роботи зі складом" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="36.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="-20.0" />
+               </VBox.margin>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="98.0" prefWidth="651.0" text="Для початку роботи оберіть потрібну функцію з меню. Для повернення до головного меню натисність кнопку &quot;Назад&quot;" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

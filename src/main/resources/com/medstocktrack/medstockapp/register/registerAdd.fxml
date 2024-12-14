@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="960.0" styleClass="main-bg" stylesheets="@../../styles/mainStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medstocktrack.medstockapp.controller.register.RegisterAddController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="header" stylesheets="@../../styles/mainStyles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="MedStockTrack" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="42.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="580.0" prefWidth="250.0" styleClass="menu" stylesheets="@../../styles/mainStyles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="250.0" styleClass="menu-title" stylesheets="@../../styles/mainStyles.css" text="Меню" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="viewButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewRegister" prefHeight="65.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@../../styles/buttons.css" text="Перегляд реєстру ліків" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Button>
+            <Button contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="65.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@../../styles/buttons.css" text="Додавання ліків до реєстру" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="removeButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeRegister" prefHeight="65.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@../../styles/buttons.css" text="Видалення ліків з реєстру" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets top="-2.0" />
+         </padding>
+      </VBox>
+   </left>
+   <bottom>
+      <HBox prefHeight="65.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="65.0" prefWidth="250.0" styleClass="exit-button" stylesheets="@../../styles/buttons.css" text="Назад" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="19.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Реєстрація нового препарату" textAlignment="CENTER" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Реєстраціне посвідчення та назва ліків" textAlignment="CENTER" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="710.0" spacing="75.0">
+               <children>
+                  <TextField fx:id="medId" prefHeight="40.0" prefWidth="225.0" promptText="РП ліків" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="medName" prefHeight="40.0" prefWidth="225.0" promptText="Назва ліків" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label text="Тип ліків та діюча речовина" textAlignment="CENTER" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="710.0" spacing="75.0">
+               <children>
+                  <TextField fx:id="medType" prefHeight="40.0" prefWidth="225.0" promptText="Тип ліків" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="medActive" prefHeight="40.0" prefWidth="225.0" promptText="Діюча речовина" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label text="Розмір на форма ліків" textAlignment="CENTER" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="710.0" spacing="75.0">
+               <children>
+                  <TextField fx:id="medSize" prefHeight="40.0" prefWidth="225.0" promptText="Розмір пакування" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="medForm" prefHeight="40.0" prefWidth="225.0" promptText="Форма препарату" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label text="Країна та виробник" textAlignment="CENTER" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="710.0" spacing="75.0">
+               <children>
+                  <TextField fx:id="medProducer" prefHeight="40.0" prefWidth="225.0" promptText="Виробник" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="medCountry" prefHeight="40.0" prefWidth="225.0" promptText="Країна" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label text="Ціна та протипоказання" textAlignment="CENTER" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="710.0" spacing="75.0">
+               <children>
+                  <TextField fx:id="medPrice" prefHeight="40.0" prefWidth="150.0" promptText="Ціна (грн.)" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="medContr" prefHeight="40.0" prefWidth="300.0" promptText="Протипоказання" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <RadioButton fx:id="medPrescription" mnemonicParsing="false" text="Потребує рецепту">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </RadioButton>
+            <Label fx:id="msg" alignment="CENTER" prefHeight="62.0" prefWidth="600.0" text="Повідомлення" textAlignment="CENTER" textFill="#012326" visible="false" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#addRegister" prefHeight="50.0" prefWidth="250.0" styleClass="regular-button" stylesheets="@../../styles/buttons.css" text="Зареєструвати" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

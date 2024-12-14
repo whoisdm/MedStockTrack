@@ -1,0 +1,53 @@
+.menu-button {
+    -fx-background-color: #AAD2D2;
+    -fx-background-insets: 1;
+    -fx-border-color: #000000;
+    -fx-border-width: 2;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-font-size: 22;
+    -fx-font-family: "Franklin Gothic Medium";
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: #b6e3e3;
+}
+
+.regular-button{
+    -fx-background-color: #5DA6A6;
+    -fx-background-insets: 1;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width: 2;
+    -fx-border-color: #000000;
+    -fx-cursor: hand;
+    -fx-font-size: 26;
+    -fx-font-family: "Franklin Gothic Medium";
+}
+
+.regular-button:hover{
+    -fx-background-color: #62b6b6;
+}
+
+.exit-button{
+    -fx-background-color: #5DA6A6;
+    -fx-background-insets: 1;
+    -fx-border-width: 2;
+    -fx-border-color: #000000;
+    -fx-border-style: solid;
+    -fx-font-size: 28;
+    -fx-font-family: "Franklin Gothic Medium";
+    -fx-cursor: hand;
+}
+
+.exit-button:hover{
+    -fx-background-color: #62b6b6;
+}
+
+.inputField {
+    -fx-border-width: 2;
+    -fx-border-color:  #000000;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-background-color:  #AAD2D2;
+}

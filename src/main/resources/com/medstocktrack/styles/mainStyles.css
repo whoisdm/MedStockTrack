@@ -1,0 +1,23 @@
+.header {
+    -fx-background-color: #4B8787;
+    -fx-border-color:  #000000;
+    -fx-border-width: 2;
+}
+
+.menu {
+    -fx-background-color:  #AAD2D2;
+    -fx-border-color:  #000000;
+    -fx-border-width: 2;
+    -fx-border-style: hidden solid solid solid;
+}
+
+.menu-title {
+    -fx-background-color: #5DA6A6;
+    -fx-border-color:  #000000;
+    -fx-border-width: 2;
+    -fx-border-style: hidden hidden solid hidden;
+}
+
+.main-bg {
+    -fx-background-color:  #CCD6D6;
+}
