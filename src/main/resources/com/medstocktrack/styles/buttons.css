@@ -40,6 +40,11 @@
     -fx-cursor: hand;
 }
 
+.simple-font{
+    -fx-font-size: 14;
+    -fx-font-family: "Franklin Gothic Medium";
+}
+
 .exit-button:hover{
     -fx-background-color: #62b6b6;
 }
