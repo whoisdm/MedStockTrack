@@ -4,6 +4,7 @@ module com.medstocktrack.medstockapp {
     requires mysql.connector.j;
     requires java.sql;
     requires java.naming;
+    requires org.apache.poi.ooxml;
 
 
     opens com.medstocktrack.medstockapp to javafx.fxml;

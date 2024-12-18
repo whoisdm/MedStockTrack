@@ -1,14 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.medstocktrack.medstockapp.journal.JournalMake"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="960.0" styleClass="main-bg" stylesheets="@../../styles/mainStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medstocktrack.medstockapp.controller.journal.JournalMakeController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="header" stylesheets="@../../styles/mainStyles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="MedStockTrack" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="42.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="580.0" prefWidth="250.0" styleClass="menu" stylesheets="@../../styles/mainStyles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="250.0" styleClass="menu-title" stylesheets="@../../styles/mainStyles.css" text="Меню" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="viewButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewJournal" prefHeight="65.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@../../styles/buttons.css" text="Перегляд журналу складу" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Button>
+            <Button contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="65.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@../../styles/buttons.css" text="Створення звітів" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets top="-2.0" />
+         </padding>
+      </VBox>
+   </left>
+   <bottom>
+      <HBox prefHeight="65.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="65.0" prefWidth="250.0" styleClass="exit-button" stylesheets="@../../styles/buttons.css" text="Назад" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="19.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Створення звіту щодо діяльності складу" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="36.0" />
+               </font>
+            </Label>
+            <Label text="Оберіть рік за який робити звіт" textAlignment="CENTER" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="yearField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="160.0" promptText="Рік" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+            </TextField>
+            <Label text="Оберіть квартал або місяць звіту, за необіхідності" textAlignment="CENTER" textFill="#012326">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="75.0">
+               <children>
+                  <ChoiceBox fx:id="quarterChoice" prefHeight="40.0" prefWidth="160.0" styleClass="inputField" stylesheets="@../../styles/buttons.css" value="-">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="-" />
+                           <String fx:value="1. Перший квартал" />
+                           <String fx:value="2. Другий квартал" />
+                           <String fx:value="3. Третій квартал" />
+                           <String fx:value="4. Четвертий квартал" />
+                        </FXCollections>
+                     </items>
+                  </ChoiceBox>
+                  <ChoiceBox fx:id="monthChoice" prefHeight="40.0" prefWidth="160.0" styleClass="inputField" stylesheets="@../../styles/buttons.css" value="-">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="-" />
+                           <String fx:value="1. Січень" />
+                           <String fx:value="2. Лютий" />
+                           <String fx:value="3. Березень" />
+                           <String fx:value="4. Квітень" />
+                           <String fx:value="5. Травень" />
+                           <String fx:value="6. Червень" />
+                           <String fx:value="7. Липень" />
+                           <String fx:value="8. Серпень" />
+                           <String fx:value="9. Вересень" />
+                           <String fx:value="10. Жовтень" />
+                           <String fx:value="11. Листопад" />
+                           <String fx:value="12. Грудень" />
+                        </FXCollections>
+                     </items>
+                  </ChoiceBox>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <RadioButton fx:id="isCustom" mnemonicParsing="false" text="Використовувати власний часовий проміжок">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </RadioButton>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="75.0">
+               <children>
+                  <DatePicker fx:id="startDate" prefHeight="40.0" prefWidth="160.0" promptText="Початок проміжку" styleClass="simple-font" stylesheets="@../../styles/buttons.css" />
+                  <DatePicker fx:id="endDate" prefHeight="40.0" prefWidth="160.0" promptText="Кінець проміжку" styleClass="simple-font" stylesheets="@../../styles/buttons.css" />
+               </children>
+            </HBox>
+            <Label fx:id="msg" alignment="CENTER" prefHeight="62.0" prefWidth="600.0" text="Повідомлення" textAlignment="CENTER" textFill="#012326" visible="false" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#makeReport" prefHeight="50.0" prefWidth="200.0" styleClass="regular-button" stylesheets="@../../styles/buttons.css" text="Створити" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
