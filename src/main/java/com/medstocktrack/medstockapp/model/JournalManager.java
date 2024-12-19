@@ -8,6 +8,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -100,7 +101,7 @@ public class JournalManager {
                 preparedStatement.setString(3, endDate.toString());
                 fillDataArray(reportData, i, preparedStatement);
             } catch (SQLException e) {
-                e.printStackTrace();
+                return -1;
             }
         }
 
@@ -143,7 +144,7 @@ public class JournalManager {
                 }
                 fillDataArray(reportData, i, preparedStatement);
             } catch (SQLException e) {
-                e.printStackTrace();
+                return -1;
             }
         }
 
@@ -168,12 +169,31 @@ public class JournalManager {
                 createSheet(sheet, reportData.get(i));
             }
 
-            //TODO: Перевірка чи існує папка reports та її створення
-            //TODO: Якщо документ вже існує, створити документ з назвою (1)
+            File directory = new File("reports");
+            boolean isExist;
+            if (!directory.exists()) {
+                isExist = directory.mkdirs();
+            } else {
+                isExist = directory.exists();
+            }
+            if (!isExist) return -1;
+
+            String filePath = "reports/report-%s%s.xlsx";
             LocalDate today = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            String fileName = String.format("report-%s.xlsx", today.format(formatter));
-            try (FileOutputStream fileOut = new FileOutputStream(fileName)) {
+
+            int index = 0;
+            File file;
+            while (true) {
+                file = new File(String.format(filePath, today.format(formatter), index == 0 ? "" : "_" + index));
+                if (file.exists() && file.isFile()){
+                    index++;
+                } else {
+                    break;
+                }
+            }
+
+            try (FileOutputStream fileOut = new FileOutputStream(file)) {
                 workbook.write(fileOut);
             } catch (IOException e) {
                 return -1;
