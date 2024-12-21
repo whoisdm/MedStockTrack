@@ -12,6 +12,7 @@ module com.medstocktrack.medstockapp {
     opens com.medstocktrack.medstockapp.controller.storage to javafx.fxml;
     opens com.medstocktrack.medstockapp.controller.register to javafx.fxml;
     opens com.medstocktrack.medstockapp.controller.journal to javafx.fxml;
+    opens com.medstocktrack.medstockapp.controller.admin to javafx.fxml;
 
     opens com.medstocktrack.medstockapp.model to javafx.base;
 

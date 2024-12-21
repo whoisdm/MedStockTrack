@@ -34,8 +34,8 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void toAdmin(ActionEvent event) {
-        System.out.println("Admin");
+    void toAdmin(ActionEvent event) throws IOException {
+        SceneSwitcherUtil.switchScene("admin/adminMain.fxml", "MedStockTrack - Панель адміністратора", registerButton);
     }
 
     @FXML
@@ -60,6 +60,7 @@ public class MainMenuController implements Initializable {
             logButton.setVisible(true);
         }
         if (currentUser.trim().equals("admin")) {
+            logButton.setVisible(true);
             adminButton.setVisible(true);
         }
     }
