@@ -29,7 +29,7 @@ public class CurrentUser implements User{
                 return 0;
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return 0;
         }
     }
 
