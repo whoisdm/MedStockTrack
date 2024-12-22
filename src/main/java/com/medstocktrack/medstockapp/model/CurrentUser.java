@@ -26,10 +26,10 @@ public class CurrentUser implements User{
                 return 1;
             } else {
                 resultSet.close();
-                return 0;
+                return -1;
             }
         } catch (SQLException e) {
-            return 0;
+            return -1;
         }
     }
 

@@ -35,7 +35,7 @@ public class LoginController {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            } else if (result == 0) {
+            } else if (result == -1) {
                 errLabel.setVisible(true);
             }
         } else {
