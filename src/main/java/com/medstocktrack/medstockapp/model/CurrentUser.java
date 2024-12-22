@@ -14,10 +14,11 @@ public class CurrentUser implements User{
     @Override
     public int isExisting(String username, String password) {
         var dataSource = DataBaseManager.getDataSource();
+        String hash = User.hash(password);
         try (Connection connection = dataSource.getConnection(dataSource.getUser(), dataSource.getPassword());
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medstocktrack.users WHERE user_login = ? AND user_password = ?;");){
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(2, hash);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
                 instance.setUsername(resultSet.getString("user_login"));
