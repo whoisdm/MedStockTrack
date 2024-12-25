@@ -13,6 +13,12 @@ public class NewUser implements User{
     public NewUser() {
     }
 
+    public NewUser(String username, String password, String role) {
+        this.username = username;
+        this.password = password;
+        this.setRole(role);
+    }
+
     @Override
     public int isExisting(String username, String password) {
         var dataSource = DataBaseManager.getDataSource();
@@ -55,7 +61,45 @@ public class NewUser implements User{
         return 1;
     }
 
+    public int editUser(String username) {
+        if (this.password == null && this.role == null) {
+            return -1;
+        }
+        String sql = "UPDATE medstocktrack.users  ";
+        if (this.password != null && this.role != null) {
+            sql += "SET user_password = ?, user_role = ? WHERE (user_login = ?);";
+        } else if (this.password != null) {
+            sql += "SET user_password = ? WHERE (user_login = ?);";
+        } else {
+            sql += "SET user_role = ? WHERE (user_login = ?);";
+        }
+
+        var dataSource = DataBaseManager.getDataSource();
+        try (Connection connection = dataSource.getConnection(dataSource.getUser(), dataSource.getPassword());
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            if (this.password != null && this.role != null) {
+                preparedStatement.setString(1, this.password);
+                preparedStatement.setString(2, this.role);
+                preparedStatement.setString(3, this.username);
+            } else if (this.password != null) {
+                preparedStatement.setString(1, User.hash(this.password));
+                preparedStatement.setString(2, this.username);
+            } else {
+                preparedStatement.setString(1, this.role);
+                preparedStatement.setString(2, this.username);
+            }
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            return -1;
+        }
+        return 1;
+    }
+
     public void setRole(String role) {
+        if (role == null) {
+            this.role = null;
+            return;
+        }
         int dotIndex = role.indexOf(".");
         String roleNumber = (dotIndex != -1) ? role.substring(0, dotIndex).trim() : role;
         switch (roleNumber){
