@@ -12,6 +12,7 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import javafx.scene.control.PasswordField?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="960.0" styleClass="main-bg" stylesheets="@../../styles/mainStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medstocktrack.medstockapp.controller.admin.UserAddController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="header" stylesheets="@../../styles/mainStyles.css" BorderPane.alignment="CENTER">
@@ -94,19 +95,19 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="passwordField" maxWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" promptText="Пароль" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+            <PasswordField fx:id="passwordField" maxWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" promptText="Пароль" styleClass="inputField" stylesheets="@../../styles/buttons.css">
                <font>
                   <Font name="Franklin Gothic Medium" size="24.0" />
                </font>
-            </TextField>
-            <TextField fx:id="passwordConf" maxWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" promptText="Підтвердження" styleClass="inputField" stylesheets="@../../styles/buttons.css">
+            </PasswordField>
+            <PasswordField fx:id="passwordConf" maxWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" promptText="Підтвердження" styleClass="inputField" stylesheets="@../../styles/buttons.css">
                <font>
                   <Font name="Franklin Gothic Medium" size="24.0" />
                </font>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
-            </TextField>
+            </PasswordField>
             <Label text="Оберіть роль" textFill="#012326">
                <font>
                   <Font name="Franklin Gothic Medium" size="24.0" />

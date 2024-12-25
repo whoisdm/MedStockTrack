@@ -4,10 +4,7 @@ import com.medstocktrack.medstockapp.SceneSwitcherUtil;
 import com.medstocktrack.medstockapp.model.NewUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -27,10 +24,10 @@ public class UserAddController {
     private Label msg;
 
     @FXML
-    private TextField passwordConf;
+    private PasswordField passwordConf;
 
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
 
     @FXML
     private ChoiceBox<String> roleChoice;
