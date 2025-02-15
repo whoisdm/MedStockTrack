@@ -1,4 +1,4 @@
-package com.medstocktrack.medstockapp.scenecontrollers.register;
+package com.medstocktrack.medstockapp.controllers.register;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
 import com.medstocktrack.medstockapp.model.Medicine;

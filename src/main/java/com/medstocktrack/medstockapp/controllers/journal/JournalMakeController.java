@@ -1,4 +1,4 @@
-package com.medstocktrack.medstockapp.scenecontrollers.journal;
+package com.medstocktrack.medstockapp.controllers.journal;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
 import com.medstocktrack.medstockapp.managers.JournalManager;

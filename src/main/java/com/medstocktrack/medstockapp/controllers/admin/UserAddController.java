@@ -1,4 +1,4 @@
-package com.medstocktrack.medstockapp.scenecontrollers.admin;
+package com.medstocktrack.medstockapp.controllers.admin;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
 import com.medstocktrack.medstockapp.model.NewUser;

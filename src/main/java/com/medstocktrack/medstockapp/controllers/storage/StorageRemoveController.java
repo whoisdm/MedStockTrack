@@ -1,4 +1,4 @@
-package com.medstocktrack.medstockapp.scenecontrollers.storage;
+package com.medstocktrack.medstockapp.controllers.storage;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
 import com.medstocktrack.medstockapp.managers.StorageManager;

@@ -1,40 +1,50 @@
-package com.medstocktrack.medstockapp.scenecontrollers.storage;
+package com.medstocktrack.medstockapp.controllers.storage;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
+import com.medstocktrack.medstockapp.model.Storage;
 import com.medstocktrack.medstockapp.managers.StorageManager;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StorageDestroyController implements Initializable {
+public class StorageViewController implements Initializable {
 
     @FXML
     private Button addButton;
 
     @FXML
+    private Button destroyButton;
+
+    @FXML
     private Button exitButton;
 
     @FXML
-    private TextField medNum;
+    private TextField medName;
 
     @FXML
     private TextField medReg;
 
     @FXML
-    private Label msg;
+    private TableColumn<Storage, String> name;
+
+    @FXML
+    private TableColumn<Storage, Integer> number;
 
     @FXML
     private Button removeButton;
 
     @FXML
-    private Button viewButton;
+    private TableView<Storage> table;
 
     private StorageManager storageManager;
 
@@ -44,21 +54,8 @@ public class StorageDestroyController implements Initializable {
     }
 
     @FXML
-    void destroyStorage(ActionEvent event) {
-        if (medNum.getText().trim().matches("^[1-9]\\d*$") && medReg.getText().trim().matches("^UA/\\d{4,5}/\\d{2}/\\d{2}$")){
-            int result = storageManager.removeMed(medReg.getText().trim(), Integer.parseInt(medNum.getText().trim()), true);
-            if (result > 0){
-                msg.setText("Списання успішно зареєстровано!");
-            } else if (result == 0){
-                msg.setText("Сталася помилка, на складі недостатньо ліків!");
-            } else {
-                msg.setText("Сталася помилка, можливо введено неіснуюче РП!");
-            }
-            msg.setVisible(true);
-        } else {
-            msg.setText("Некоректне РП або кількість списання!");
-            msg.setVisible(true);
-        }
+    void destroyStorage(ActionEvent event) throws IOException {
+        SceneSwitcherUtil.switchScene("storage/storageDestroy.fxml","MedStockTrack - Реєстрація списання", destroyButton);
     }
 
     @FXML
@@ -72,12 +69,15 @@ public class StorageDestroyController implements Initializable {
     }
 
     @FXML
-    void viewStorage(ActionEvent event) throws IOException {
-        SceneSwitcherUtil.switchScene("storage/storageView.fxml","MedStockTrack - Перегляд складу", viewButton);
+    void searchStorage(ActionEvent event) {
+        ObservableList<Storage> storages = storageManager.getStorageList(medReg.getText().trim() , medName.getText().trim());
+        table.setItems(storages);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        name.setCellValueFactory(new PropertyValueFactory<>("medName"));
+        number.setCellValueFactory(new PropertyValueFactory<>("medNumber"));
         storageManager = new StorageManager();
     }
 }

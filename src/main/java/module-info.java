@@ -8,11 +8,11 @@ module com.medstocktrack.medstockapp {
 
 
     opens com.medstocktrack.medstockapp to javafx.fxml;
-    opens com.medstocktrack.medstockapp.scenecontrollers to javafx.fxml;
-    opens com.medstocktrack.medstockapp.scenecontrollers.storage to javafx.fxml;
-    opens com.medstocktrack.medstockapp.scenecontrollers.register to javafx.fxml;
-    opens com.medstocktrack.medstockapp.scenecontrollers.journal to javafx.fxml;
-    opens com.medstocktrack.medstockapp.scenecontrollers.admin to javafx.fxml;
+    opens com.medstocktrack.medstockapp.controllers to javafx.fxml;
+    opens com.medstocktrack.medstockapp.controllers.storage to javafx.fxml;
+    opens com.medstocktrack.medstockapp.controllers.register to javafx.fxml;
+    opens com.medstocktrack.medstockapp.controllers.journal to javafx.fxml;
+    opens com.medstocktrack.medstockapp.controllers.admin to javafx.fxml;
 
     opens com.medstocktrack.medstockapp.model to javafx.base;
     opens com.medstocktrack.medstockapp.managers to javafx.base;

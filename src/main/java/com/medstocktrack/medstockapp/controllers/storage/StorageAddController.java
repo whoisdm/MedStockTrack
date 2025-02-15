@@ -1,26 +1,19 @@
-package com.medstocktrack.medstockapp.scenecontrollers.storage;
+package com.medstocktrack.medstockapp.controllers.storage;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
-import com.medstocktrack.medstockapp.model.Storage;
 import com.medstocktrack.medstockapp.managers.StorageManager;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StorageViewController implements Initializable {
-
-    @FXML
-    private Button addButton;
+public class StorageAddController implements Initializable {
 
     @FXML
     private Button destroyButton;
@@ -29,28 +22,36 @@ public class StorageViewController implements Initializable {
     private Button exitButton;
 
     @FXML
-    private TextField medName;
+    private TextField medNum;
 
     @FXML
     private TextField medReg;
 
     @FXML
-    private TableColumn<Storage, String> name;
-
-    @FXML
-    private TableColumn<Storage, Integer> number;
+    private Label msg;
 
     @FXML
     private Button removeButton;
 
     @FXML
-    private TableView<Storage> table;
+    private Button viewButton;
 
     private StorageManager storageManager;
 
     @FXML
-    void addStorage(ActionEvent event) throws IOException {
-        SceneSwitcherUtil.switchScene("storage/storageAdd.fxml","MedStockTrack - Реєстрація завезення", addButton);
+    void addStorage(ActionEvent event) {
+        if (medNum.getText().trim().matches("^[1-9]\\d*$") && medReg.getText().trim().matches("^UA/\\d{4,5}/\\d{2}/\\d{2}$")){
+            int result = storageManager.addMed(medReg.getText().trim(), Integer.parseInt(medNum.getText().trim()));
+            if (result > 0){
+                msg.setText("Завезення успішно зареєстровано!");
+            } else {
+                msg.setText("Сталася помилка, можливо введено неіснуюче РП!");
+            }
+            msg.setVisible(true);
+        } else {
+            msg.setText("Некоректне РП або кількість завезення!");
+            msg.setVisible(true);
+        }
     }
 
     @FXML
@@ -69,15 +70,12 @@ public class StorageViewController implements Initializable {
     }
 
     @FXML
-    void searchStorage(ActionEvent event) {
-        ObservableList<Storage> storages = storageManager.getStorageList(medReg.getText().trim() , medName.getText().trim());
-        table.setItems(storages);
+    void viewStorage(ActionEvent event) throws IOException {
+        SceneSwitcherUtil.switchScene("storage/storageView.fxml","MedStockTrack - Перегляд складу", viewButton);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        name.setCellValueFactory(new PropertyValueFactory<>("medName"));
-        number.setCellValueFactory(new PropertyValueFactory<>("medNumber"));
         storageManager = new StorageManager();
     }
 }
