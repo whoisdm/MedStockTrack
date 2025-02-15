@@ -1,7 +1,7 @@
-package com.medstocktrack.medstockapp.controller.storage;
+package com.medstocktrack.medstockapp.scenecontrollers.storage;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
-import com.medstocktrack.medstockapp.model.StorageManager;
+import com.medstocktrack.medstockapp.managers.StorageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

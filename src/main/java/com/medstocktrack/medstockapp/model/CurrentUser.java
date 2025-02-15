@@ -1,5 +1,7 @@
 package com.medstocktrack.medstockapp.model;
 
+import com.medstocktrack.medstockapp.managers.DataBaseManager;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

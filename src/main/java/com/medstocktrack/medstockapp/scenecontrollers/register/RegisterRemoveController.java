@@ -1,7 +1,7 @@
-package com.medstocktrack.medstockapp.controller.register;
+package com.medstocktrack.medstockapp.scenecontrollers.register;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
-import com.medstocktrack.medstockapp.model.RegisterManager;
+import com.medstocktrack.medstockapp.managers.RegisterManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

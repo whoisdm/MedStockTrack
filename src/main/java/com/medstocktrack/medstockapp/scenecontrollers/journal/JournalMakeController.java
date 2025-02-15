@@ -1,7 +1,7 @@
-package com.medstocktrack.medstockapp.controller.journal;
+package com.medstocktrack.medstockapp.scenecontrollers.journal;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
-import com.medstocktrack.medstockapp.model.JournalManager;
+import com.medstocktrack.medstockapp.managers.JournalManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

@@ -1,7 +1,7 @@
-package com.medstocktrack.medstockapp.controller.storage;
+package com.medstocktrack.medstockapp.scenecontrollers.storage;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
-import com.medstocktrack.medstockapp.model.StorageManager;
+import com.medstocktrack.medstockapp.managers.StorageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,10 +13,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StorageDestroyController implements Initializable {
+public class StorageAddController implements Initializable {
 
     @FXML
-    private Button addButton;
+    private Button destroyButton;
 
     @FXML
     private Button exitButton;
@@ -39,26 +39,24 @@ public class StorageDestroyController implements Initializable {
     private StorageManager storageManager;
 
     @FXML
-    void addStorage(ActionEvent event) throws IOException {
-        SceneSwitcherUtil.switchScene("storage/storageAdd.fxml","MedStockTrack - Реєстрація завезення", addButton);
-    }
-
-    @FXML
-    void destroyStorage(ActionEvent event) {
+    void addStorage(ActionEvent event) {
         if (medNum.getText().trim().matches("^[1-9]\\d*$") && medReg.getText().trim().matches("^UA/\\d{4,5}/\\d{2}/\\d{2}$")){
-            int result = storageManager.removeMed(medReg.getText().trim(), Integer.parseInt(medNum.getText().trim()), true);
+            int result = storageManager.addMed(medReg.getText().trim(), Integer.parseInt(medNum.getText().trim()));
             if (result > 0){
-                msg.setText("Списання успішно зареєстровано!");
-            } else if (result == 0){
-                msg.setText("Сталася помилка, на складі недостатньо ліків!");
+                msg.setText("Завезення успішно зареєстровано!");
             } else {
                 msg.setText("Сталася помилка, можливо введено неіснуюче РП!");
             }
             msg.setVisible(true);
         } else {
-            msg.setText("Некоректне РП або кількість списання!");
+            msg.setText("Некоректне РП або кількість завезення!");
             msg.setVisible(true);
         }
+    }
+
+    @FXML
+    void destroyStorage(ActionEvent event) throws IOException {
+        SceneSwitcherUtil.switchScene("storage/storageDestroy.fxml","MedStockTrack - Реєстрація списання", destroyButton);
     }
 
     @FXML

@@ -1,5 +1,7 @@
-package com.medstocktrack.medstockapp.model;
+package com.medstocktrack.medstockapp.managers;
 
+import com.medstocktrack.medstockapp.model.CurrentUser;
+import com.medstocktrack.medstockapp.model.Medicine;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

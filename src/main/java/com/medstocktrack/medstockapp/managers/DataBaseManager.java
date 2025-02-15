@@ -1,4 +1,4 @@
-package com.medstocktrack.medstockapp.model;
+package com.medstocktrack.medstockapp.managers;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 

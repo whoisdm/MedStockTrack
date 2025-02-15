@@ -1,8 +1,7 @@
-package com.medstocktrack.medstockapp.controller;
+package com.medstocktrack.medstockapp.scenecontrollers;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
 import com.medstocktrack.medstockapp.model.CurrentUser;
-import com.medstocktrack.medstockapp.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -1,4 +1,4 @@
-package com.medstocktrack.medstockapp.controller.storage;
+package com.medstocktrack.medstockapp.scenecontrollers.storage;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
 import javafx.event.ActionEvent;
