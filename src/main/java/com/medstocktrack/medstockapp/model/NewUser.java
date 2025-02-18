@@ -63,7 +63,7 @@ public class NewUser implements HashableUser{
         return 1;
     }
 
-    public int editUser(String username) {
+    public int editUser() {
         if (this.password == null && this.role == null) {
             return -1;
         }

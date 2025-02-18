@@ -58,7 +58,7 @@ public class UserEditController {
         String newRole = Objects.equals(roleChoice.getValue(), "-") ? null : roleChoice.getValue();
 
         NewUser newUser = new NewUser(loginField.getText().trim(), newPassword, newRole);
-        int result = newUser.editUser(loginField.getText().trim());
+        int result = newUser.editUser();
         if (result == 1){
             msg.setText("Інформація про користувача успішно оновлена!");
             msg.setVisible(true);
