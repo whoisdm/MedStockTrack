@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CurrentUser implements User{
+public class CurrentUser implements HashableUser{
     private String username;
     private String role;
     private static final CurrentUser instance = new CurrentUser();
@@ -16,7 +16,7 @@ public class CurrentUser implements User{
     @Override
     public int isExisting(String username, String password) {
         var dataSource = DataBaseManager.getDataSource();
-        String hash = User.hash(password);
+        String hash = HashableUser.hash(password);
         try (Connection connection = dataSource.getConnection(dataSource.getUser(), dataSource.getPassword());
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medstocktrack.users WHERE user_login = ? AND user_password = ?;");){
             preparedStatement.setString(1, username);

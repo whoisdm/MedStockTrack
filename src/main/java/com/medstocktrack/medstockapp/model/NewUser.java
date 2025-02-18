@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class NewUser implements User{
+public class NewUser implements HashableUser{
     private String username;
     private String password;
     private String role;
@@ -52,7 +52,7 @@ public class NewUser implements User{
             preparedStatement.setString(1, this.username);
             preparedStatement.setString(3, this.role);
 
-            String pass = User.hash(this.password);
+            String pass = HashableUser.hash(this.password);
             if (pass == null) return -1;
 
             preparedStatement.setString(2, pass);
@@ -84,7 +84,7 @@ public class NewUser implements User{
                 preparedStatement.setString(2, this.role);
                 preparedStatement.setString(3, this.username);
             } else if (this.password != null) {
-                preparedStatement.setString(1, User.hash(this.password));
+                preparedStatement.setString(1, HashableUser.hash(this.password));
                 preparedStatement.setString(2, this.username);
             } else {
                 preparedStatement.setString(1, this.role);

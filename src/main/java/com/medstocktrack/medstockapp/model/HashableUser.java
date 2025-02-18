@@ -3,7 +3,7 @@ package com.medstocktrack.medstockapp.model;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public interface User {
+public interface HashableUser {
     int isExisting(String username, String password);
 
     static String hash(String string) {
