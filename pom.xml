@@ -71,7 +71,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.medstocktrack.medstockdiploma/com.medstocktrack.medstockapp.HelloApplication
+                                com.medstocktrack.medstockapp.Application
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

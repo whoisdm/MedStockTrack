@@ -25,6 +25,4 @@ public class DataBaseManager {
         dataSource.setPassword(props.getProperty("password"));
         return dataSource;
     }
-
-
 }
