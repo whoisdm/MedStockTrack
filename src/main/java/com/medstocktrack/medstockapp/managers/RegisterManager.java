@@ -48,65 +48,71 @@ public class RegisterManager {
 
     public int addRegister (Medicine medicine) {
         try (Connection connection = dataSource.getConnection(dataSource.getUser(), dataSource.getPassword())){
-            connection.setAutoCommit(false);
-            int producerId = -1;
+            try {
+                connection.setAutoCommit(false);
+                int producerId = -1;
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medicine INNER JOIN producers ON medicine.med_producer = producers.producer_id " +
-                    "WHERE producers.producer_name = ? AND producers.producer_country = ?;")){
-                preparedStatement.setString(1, medicine.getProducer().getProducerName());
-                preparedStatement.setString(2, medicine.getProducer().getProducerCountry());
-                ResultSet resultSet = preparedStatement.executeQuery();
-                if (resultSet.next()){
-                    producerId = resultSet.getInt("producer_id");
-                } else {
-                    try (PreparedStatement newProducer = connection.prepareStatement("INSERT INTO producers (`producer_name`, `producer_country`) VALUES (?, ?);" , Statement.RETURN_GENERATED_KEYS)){
-                        newProducer.setString(1, medicine.getProducer().getProducerName());
-                        newProducer.setString(2, medicine.getProducer().getProducerCountry());
+                try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medicine INNER JOIN producers ON medicine.med_producer = producers.producer_id " +
+                        "WHERE producers.producer_name = ? AND producers.producer_country = ?;")){
+                    preparedStatement.setString(1, medicine.getProducer().getProducerName());
+                    preparedStatement.setString(2, medicine.getProducer().getProducerCountry());
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    if (resultSet.next()){
+                        producerId = resultSet.getInt("producer_id");
+                    } else {
+                        try (PreparedStatement newProducer = connection.prepareStatement("INSERT INTO producers (`producer_name`, `producer_country`) VALUES (?, ?);" , Statement.RETURN_GENERATED_KEYS)){
+                            newProducer.setString(1, medicine.getProducer().getProducerName());
+                            newProducer.setString(2, medicine.getProducer().getProducerCountry());
 
-                        int affectedRows = newProducer.executeUpdate();
+                            int affectedRows = newProducer.executeUpdate();
 
-                        if (affectedRows == 1){
-                            try (ResultSet generatedKeys = newProducer.getGeneratedKeys()) {
-                                if (generatedKeys.next()) producerId = generatedKeys.getInt(1);
+                            if (affectedRows == 1){
+                                try (ResultSet generatedKeys = newProducer.getGeneratedKeys()) {
+                                    if (generatedKeys.next()) producerId = generatedKeys.getInt(1);
+                                }
                             }
                         }
                     }
+                    resultSet.close();
                 }
-                resultSet.close();
-            }
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medicine WHERE medicine.med_id = ?;")){
-                preparedStatement.setString(1, medicine.getMedicineID());
-                ResultSet resultSet = preparedStatement.executeQuery();
-                boolean isResult = resultSet.next();
-                if (isResult){
-                    return -1;
-                } else {
-                    try (PreparedStatement newMedicine = connection.prepareStatement("INSERT INTO `medstocktrack`.`medicine` (`med_id`, `med_name`, `med_type`, `med_active`, `med_size`, `med_contr`, `med_form`, `med_price`, `med_prescription`, `med_producer`)" +
-                            " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);")){
-                        newMedicine.setString(1, medicine.getMedicineID());
-                        newMedicine.setString(2, medicine.getMedicineName());
-                        newMedicine.setString(3, medicine.getMedicineType());
-                        newMedicine.setString(4, medicine.getMedicineActive());
-                        newMedicine.setString(5, medicine.getMedicineSize());
-                        newMedicine.setString(6, medicine.getMedicineContr());
-                        newMedicine.setString(7, medicine.getMedicineForm());
-                        newMedicine.setDouble(8, medicine.getMedicinePrice());
-                        newMedicine.setInt(9, medicine.isMedicinePrescription());
-                        newMedicine.setInt(10, producerId);
-                        newMedicine.executeUpdate();
+                try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medicine WHERE medicine.med_id = ?;")){
+                    preparedStatement.setString(1, medicine.getMedicineID());
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    boolean isResult = resultSet.next();
+                    if (isResult){
+                        return -1;
+                    } else {
+                        try (PreparedStatement newMedicine = connection.prepareStatement("INSERT INTO `medstocktrack`.`medicine` (`med_id`, `med_name`, `med_type`, `med_active`, `med_size`, `med_contr`, `med_form`, `med_price`, `med_prescription`, `med_producer`)" +
+                                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);")){
+                            newMedicine.setString(1, medicine.getMedicineID());
+                            newMedicine.setString(2, medicine.getMedicineName());
+                            newMedicine.setString(3, medicine.getMedicineType());
+                            newMedicine.setString(4, medicine.getMedicineActive());
+                            newMedicine.setString(5, medicine.getMedicineSize());
+                            newMedicine.setString(6, medicine.getMedicineContr());
+                            newMedicine.setString(7, medicine.getMedicineForm());
+                            newMedicine.setDouble(8, medicine.getMedicinePrice());
+                            newMedicine.setInt(9, medicine.isMedicinePrescription());
+                            newMedicine.setInt(10, producerId);
+                            newMedicine.executeUpdate();
+                        }
                     }
+                    resultSet.close();
                 }
-                resultSet.close();
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO actions (action_user, action_type, action_date, action_med) VALUES (?, 'РЕЄСТРАЦІЯ', NOW(), ?);")){
+                    preparedStatement.setString(1, CurrentUser.getCurrentUser().getUsername());
+                    preparedStatement.setString(2, medicine.getMedicineID());
+                    preparedStatement.executeUpdate();
+                }
+
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                return -1;
             }
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO actions (action_user, action_type, action_date, action_med) VALUES (?, 'РЕЄСТРАЦІЯ', NOW(), ?);")){
-                preparedStatement.setString(1, CurrentUser.getCurrentUser().getUsername());
-                preparedStatement.setString(2, medicine.getMedicineID());
-                preparedStatement.executeUpdate();
-            }
-
-            connection.commit();
         } catch (SQLException e) {
             return -1;
         }
@@ -115,27 +121,32 @@ public class RegisterManager {
 
     public int removeRegister (String medicineID) {
         try (Connection connection = dataSource.getConnection(dataSource.getUser(), dataSource.getPassword())){
-            connection.setAutoCommit(false);
-            try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medicine WHERE med_id = ?;")){
-                preparedStatement.setString(1, medicineID);
-                ResultSet resultSet = preparedStatement.executeQuery();
-                if (resultSet.next()){
-                    try (PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM medicine WHERE med_id = ?;")){
-                        deleteStatement.setString(1, medicineID);
-                        deleteStatement.executeUpdate();
+            try {
+                connection.setAutoCommit(false);
+                try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medicine WHERE med_id = ?;")){
+                    preparedStatement.setString(1, medicineID);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    if (resultSet.next()){
+                        try (PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM medicine WHERE med_id = ?;")){
+                            deleteStatement.setString(1, medicineID);
+                            deleteStatement.executeUpdate();
+                        }
+                    } else {
+                        resultSet.close();
+                        return -1;
                     }
-                } else {
                     resultSet.close();
-                    return -1;
                 }
-                resultSet.close();
+                try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO actions (action_user, action_type, action_date, action_med) VALUES (?, 'ВИДАЛЕННЯ', NOW(), ?);")){
+                    preparedStatement.setString(1, CurrentUser.getCurrentUser().getUsername());
+                    preparedStatement.setString(2, medicineID);
+                    preparedStatement.executeUpdate();
+                }
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                return -1;
             }
-            try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO actions (action_user, action_type, action_date, action_med) VALUES (?, 'ВИДАЛЕННЯ', NOW(), ?);")){
-                preparedStatement.setString(1, CurrentUser.getCurrentUser().getUsername());
-                preparedStatement.setString(2, medicineID);
-                preparedStatement.executeUpdate();
-            }
-            connection.commit();
         } catch (SQLException e) {
             return -1;
         }

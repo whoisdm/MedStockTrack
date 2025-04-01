@@ -66,6 +66,9 @@ public class StorageManager {
                 }
                 connection.commit();
                 resultSet.close();
+            } catch (SQLException e) {
+                connection.rollback();
+                return -1;
             }
         } catch (SQLException e) {
             return -1;
@@ -105,6 +108,9 @@ public class StorageManager {
                 }
                 connection.commit();
                 resultSet.close();
+            } catch (SQLException e) {
+                connection.rollback();
+                return -1;
             }
         } catch (SQLException e) {
             return -1;
