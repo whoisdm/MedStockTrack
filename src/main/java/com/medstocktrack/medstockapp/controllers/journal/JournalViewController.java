@@ -23,7 +23,7 @@ public class JournalViewController implements Initializable {
     private TableColumn<Action, String> actionMed;
 
     @FXML
-    private TableColumn<Action, Integer> actionSize;
+    private TableColumn<Action, String> actionSize;
 
     @FXML
     private TableColumn<Action, String> actionType;
@@ -94,7 +94,7 @@ public class JournalViewController implements Initializable {
         actionType.setCellValueFactory(new PropertyValueFactory<Action, String>("actionType"));
         actionDate.setCellValueFactory(new PropertyValueFactory<Action, String>("actionDate"));
         actionMed.setCellValueFactory(new PropertyValueFactory<Action, String>("actionMedicine"));
-        actionSize.setCellValueFactory(new PropertyValueFactory<Action, Integer>("actionQuantity"));
+        actionSize.setCellValueFactory(new PropertyValueFactory<Action, String>("actionQuantity"));
         journalManager = new JournalManager();
     }
 }

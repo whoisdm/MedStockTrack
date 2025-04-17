@@ -101,7 +101,7 @@ public class RegisterManager {
                     resultSet.close();
                 }
 
-                try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO actions (action_user, action_type, action_date, action_med) VALUES (?, 'РЕЄСТРАЦІЯ', NOW(), ?);")){
+                try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO actions (action_user, action_type, action_size, action_date, action_med) VALUES (?, 'РЕЄСТРАЦІЯ', 0, NOW(), ?);")){
                     preparedStatement.setString(1, CurrentUser.getCurrentUser().getUsername());
                     preparedStatement.setString(2, medicine.getMedicineID());
                     preparedStatement.executeUpdate();
@@ -123,6 +123,27 @@ public class RegisterManager {
         try (Connection connection = dataSource.getConnection(dataSource.getUser(), dataSource.getPassword())){
             try {
                 connection.setAutoCommit(false);
+                try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM storages WHERE storage_med = ?;")) {
+                    preparedStatement.setString(1, medicineID);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    if (resultSet.next()){
+                        int amount = resultSet.getInt("storage_amount");
+                        try (PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM storages WHERE storage_med = ?;")){
+                            deleteStatement.setString(1, medicineID);
+                            deleteStatement.executeUpdate();
+                        }
+                        try(PreparedStatement logStatement = connection.prepareStatement(("INSERT INTO actions (action_user, action_type, action_size, action_date, action_med) " +
+                                "VALUES (?, ?, ?, NOW(), ?);"))){
+                            logStatement.setString(1, CurrentUser.getCurrentUser().getUsername());
+                            logStatement.setString(2, "СПИСАННЯ");
+                            logStatement.setInt(3, amount);
+                            logStatement.setString(4, medicineID);
+                            logStatement.executeUpdate();
+                        }
+                    }
+                    resultSet.close();
+                }
+
                 try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medicine WHERE med_id = ?;")){
                     preparedStatement.setString(1, medicineID);
                     ResultSet resultSet = preparedStatement.executeQuery();
@@ -137,7 +158,7 @@ public class RegisterManager {
                     }
                     resultSet.close();
                 }
-                try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO actions (action_user, action_type, action_date, action_med) VALUES (?, 'ВИДАЛЕННЯ', NOW(), ?);")){
+                try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO actions (action_user, action_type, action_size, action_date, action_med) VALUES (?, 'ВИДАЛЕННЯ', 0, NOW(), ?);")){
                     preparedStatement.setString(1, CurrentUser.getCurrentUser().getUsername());
                     preparedStatement.setString(2, medicineID);
                     preparedStatement.executeUpdate();

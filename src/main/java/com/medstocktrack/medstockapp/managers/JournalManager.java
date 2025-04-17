@@ -66,7 +66,7 @@ public class JournalManager {
             while (resultSet.next()) {
                 String date = formatDate(resultSet.getString("action_date"));
                 Action action = new Action(resultSet.getString("action_user"), resultSet.getString("action_type"),
-                        date, resultSet.getString("action_med"), resultSet.getInt("action_size"));
+                        date, resultSet.getString("action_med"), resultSet.getInt("action_size") == 0 ? "-" : Integer.toString(resultSet.getInt("action_size")));
                 actions.add(action);
             }
             resultSet.close();
