@@ -77,10 +77,11 @@ public class NewUser implements HashableUser{
         }
 
         var dataSource = DataBaseManager.getDataSource();
+        int count = -1;
         try (Connection connection = dataSource.getConnection(dataSource.getUser(), dataSource.getPassword());
              PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             if (this.password != null && this.role != null) {
-                preparedStatement.setString(1, this.password);
+                preparedStatement.setString(1, HashableUser.hash(this.password));
                 preparedStatement.setString(2, this.role);
                 preparedStatement.setString(3, this.username);
             } else if (this.password != null) {
@@ -90,11 +91,11 @@ public class NewUser implements HashableUser{
                 preparedStatement.setString(1, this.role);
                 preparedStatement.setString(2, this.username);
             }
-            preparedStatement.executeUpdate();
+            count = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             return -1;
         }
-        return 1;
+        return count > 0 ? 1 : -1;
     }
 
     public void setRole(String role) {
