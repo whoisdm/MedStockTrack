@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -97,14 +98,14 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Label fx:id="msg" alignment="CENTER" textAlignment="CENTER" textFill="#012326" wrapText="true">
+            <TextArea fx:id="msg" editable="false" prefHeight="50.0" prefWidth="600.0" styleClass="text-area-bg" stylesheets="@../../styles/mainStyles.css" visible="false" wrapText="true">
                <font>
-                  <Font name="Franklin Gothic Medium" size="24.0" />
+                  <Font name="Franklin Gothic Medium" size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets left="25.0" right="25.0" />
                </VBox.margin>
-            </Label>
+            </TextArea>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <TextField fx:id="idField" prefHeight="40.0" prefWidth="160.0" promptText="РП ліків" styleClass="inputField" stylesheets="@../../styles/buttons.css">

@@ -49,7 +49,7 @@ public class RegisterViewController implements Initializable {
     private TableColumn<Medicine, String> medType;
 
     @FXML
-    private Label msg;
+    private TextArea msg;
 
     @FXML
     private Button removeButton;
@@ -115,13 +115,15 @@ public class RegisterViewController implements Initializable {
 
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                msg.setText(String.format("Виробник: %s, %s. Протипоказання: %s %s",
+                msg.setVisible(true);
+                msg.setText(String.format("Виробник: %s, %s.\nПротипоказання: %s %s",
                         newSelection.getProducer().getProducerName(),
                         newSelection.getProducer().getProducerCountry(),
                         newSelection.getMedicineContr(),
                         newSelection.isMedicinePrescription() == 1 ? "Потребує рецепту." : "Не потребує рецепту."));
             } else {
                 msg.setText("");
+                msg.setVisible(false);
             }
         });
 

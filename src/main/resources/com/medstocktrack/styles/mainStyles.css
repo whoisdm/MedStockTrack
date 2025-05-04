@@ -21,3 +21,9 @@
 .main-bg {
     -fx-background-color:  #CCD6D6;
 }
+
+.text-area-bg {
+    -fx-control-inner-background: #AAD2D2;
+    -fx-border-color:  #000000;
+    -fx-border-width: 2;
+}
