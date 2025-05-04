@@ -1,6 +1,7 @@
 package com.medstocktrack.medstockapp.controllers.journal;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
+import com.medstocktrack.medstockapp.TableCopyUtil;
 import com.medstocktrack.medstockapp.model.Action;
 import com.medstocktrack.medstockapp.managers.JournalManager;
 import javafx.collections.ObservableList;
@@ -96,5 +97,7 @@ public class JournalViewController implements Initializable {
         actionMed.setCellValueFactory(new PropertyValueFactory<Action, String>("actionMedicine"));
         actionSize.setCellValueFactory(new PropertyValueFactory<Action, String>("actionQuantity"));
         journalManager = new JournalManager();
+
+        TableCopyUtil.enableCellCopying(table);
     }
 }

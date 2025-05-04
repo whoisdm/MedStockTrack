@@ -1,6 +1,7 @@
 package com.medstocktrack.medstockapp.controllers.storage;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
+import com.medstocktrack.medstockapp.TableCopyUtil;
 import com.medstocktrack.medstockapp.model.Storage;
 import com.medstocktrack.medstockapp.managers.StorageManager;
 import javafx.collections.ObservableList;
@@ -79,5 +80,7 @@ public class StorageViewController implements Initializable {
         name.setCellValueFactory(new PropertyValueFactory<>("medName"));
         number.setCellValueFactory(new PropertyValueFactory<>("medNumber"));
         storageManager = new StorageManager();
+
+        TableCopyUtil.enableCellCopying(table);
     }
 }

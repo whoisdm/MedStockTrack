@@ -1,6 +1,7 @@
 package com.medstocktrack.medstockapp.controllers.register;
 
 import com.medstocktrack.medstockapp.SceneSwitcherUtil;
+import com.medstocktrack.medstockapp.TableCopyUtil;
 import com.medstocktrack.medstockapp.model.CurrentUser;
 import com.medstocktrack.medstockapp.model.Medicine;
 import com.medstocktrack.medstockapp.managers.RegisterManager;
@@ -10,6 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
 
 import java.io.IOException;
 import java.net.URL;
@@ -120,5 +124,7 @@ public class RegisterViewController implements Initializable {
                 msg.setText("");
             }
         });
+
+        TableCopyUtil.enableCellCopying(table);
     }
 }
