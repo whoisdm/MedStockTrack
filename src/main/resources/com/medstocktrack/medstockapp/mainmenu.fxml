@@ -74,7 +74,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="98.0" prefWidth="651.0" text="Ви знаходитесь в головному меню інформаційної системи MedStockTrack" textAlignment="CENTER" wrapText="true">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="98.0" prefWidth="651.0" text="Ви знаходитесь в головному меню програмної системи MedStockTrack" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Franklin Gothic Medium" size="36.0" />
                </font>
